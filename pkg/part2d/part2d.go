@@ -6,7 +6,7 @@ type Particle struct {
 	Mass     int64  `json:"mass"`
 }
 
-func (particle *Particle) ApplyForce(force *Vector, dt int64) {
+func (particle *Particle) ApplyForce(force Vector, dt int64) {
 	acceleration := Vector{X: force.X / particle.Mass, Y: force.Y / particle.Mass}
 	particle.Velocity.X += acceleration.X * dt
 	particle.Velocity.Y += acceleration.Y * dt
