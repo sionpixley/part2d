@@ -1,12 +1,20 @@
 package part2d
 
 type Particle struct {
-	Position Vector2D `json:"position"`
-	Velocity Vector2D `json:"velocity"`
-	Mass     float64  `json:"mass"`
+	Position Vector `json:"position"`
+	Velocity Vector `json:"velocity"`
+	Mass     int64  `json:"mass"`
 }
 
-type Vector2D struct {
-	X float64 `json:"x"`
-	Y float64 `json:"y"`
+func (particle *Particle) ApplyForce(force *Vector, dt int64) {
+	acceleration := Vector{X: force.X / particle.Mass, Y: force.Y / particle.Mass}
+	particle.Velocity.X += acceleration.X * dt
+	particle.Velocity.Y += acceleration.Y * dt
+	particle.Position.X += particle.Velocity.X * dt
+	particle.Position.Y += particle.Velocity.Y * dt
+}
+
+type Vector struct {
+	X int64 `json:"x"`
+	Y int64 `json:"y"`
 }
