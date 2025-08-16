@@ -1,3 +1,3 @@
 module github.com/sionpixley/part2d
 
-go 1.24
+go 1.18
